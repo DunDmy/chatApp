@@ -15,7 +15,18 @@ const io = socketIO(server);
 //listen for connection
 io.on('connection', (socket) => {
 	console.log('New user connected');
+	//event listener
+	//custom event. send data to client
+	socket.emit('newMessage', {
+		from: 'mike@example.com',
+		text: 'Hello',
+		createdAt: 321323
+	});
 
+	//custom event
+	socket.on('createMessage', (message) => {
+		console.log('createMessage', message);
+	})
 	socket.on('disconnect', () => {
 		console.log('User was disconnected');
 	})
@@ -25,4 +36,4 @@ io.on('connection', (socket) => {
 app.use(express.static(publicPath));
 
 
-server.listen(3000, ()=> console.log(`ERVER IS UP ${port}`));
+server.listen(3000, ()=> console.log(`PORT IS UP ${port}`));
