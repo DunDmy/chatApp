@@ -42,4 +42,4 @@ io.on('connection', (socket) => {
 app.use(express.static(publicPath));
 
 
-server.listen(3000, ()=> console.log(`PORT IS UP ${port}`));
+server.listen(port, ()=> console.log(`PORT IS UP ${port}`));
